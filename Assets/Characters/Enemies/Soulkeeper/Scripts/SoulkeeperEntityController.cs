@@ -51,11 +51,11 @@ public class SoulkeeperEntityController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other) {
 
-        Damagable damagable = other.GetComponent<Damagable>();
+       /* Damagable damagable = other.GetComponent<Damagable>();
 
         if (damagable != null) {
             damagable.Hit(20);
-        }
+        }*/
 
     }
 

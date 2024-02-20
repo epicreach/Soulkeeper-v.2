@@ -1,20 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Mathematics;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Damagable))]
-public class HealthBarController : MonoBehaviour
+public class PlayerHealthBarController : MonoBehaviour
 {
-
-    GameObject boss;
+   GameObject player;
 
     public Damagable damagable;
     public Image healthBar;
+    public Image healthBorder;
     float currentHealth;
     float maxHealth;
     float healthPercentage;
@@ -23,8 +18,8 @@ public class HealthBarController : MonoBehaviour
     
 
     void Start() {
-        boss = GameObject.FindWithTag("Boss");
-        damagable = boss.GetComponent<Damagable>();
+        player = GameObject.FindWithTag("Player");
+        damagable = player.GetComponent<Damagable>();
         maxHealth = damagable.MaxHealth;
     }
 
@@ -35,6 +30,7 @@ public class HealthBarController : MonoBehaviour
         healthPercentage = currentHealth / maxHealth;
 
         healthBar.fillAmount = healthPercentage;
+        healthBorder.fillAmount = healthPercentage;
 
     }
 }

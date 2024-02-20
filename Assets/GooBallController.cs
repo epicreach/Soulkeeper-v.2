@@ -11,7 +11,7 @@ public class GooBallController : MonoBehaviour
     Rigidbody2D rb;
 
     float speed = 3.0f;
-    float damage = 10.0f;
+    int damage = 10;
 
         Vector2 playerPosition;
         Vector2 ballPosition;
@@ -38,7 +38,13 @@ public class GooBallController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
 
         if (other.tag =="Player") {
-            Debug.Log("Player Damaged");
+            
+            Damagable temp = other.GetComponent<Damagable>();
+
+            if (temp != null) {
+                temp.Hit(damage);
+            }
+
             Destroy(gameObject);
         }
 

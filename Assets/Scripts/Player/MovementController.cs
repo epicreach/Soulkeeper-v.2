@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
 
     private int health;
+    bool inAir = false;
 
     private void Awake() {
         touchingDirections = GetComponent<TouchingDirections>();
@@ -72,7 +73,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() {
 
-        if(damagable.Health == 0){
+        if (!touchingDirections.IsGrounded)
+        {
+            audioSrc.Stop();
+
+        }
+        else if(touchingDirections.IsGrounded && inAir)
+        {
+            inAir = false;
+            audioSrc.Play();
+        }
+        inAir = !touchingDirections.IsGrounded;
+
+        if (damagable.Health == 0){
             SceneManager.LoadSceneAsync(4);
        }
 
@@ -88,7 +101,9 @@ public class PlayerController : MonoBehaviour
     private void OnMovementPerformed(InputAction.CallbackContext context) {
         inputVector = context.ReadValue<Vector2>();
         animator.SetBool("IsRunning", true);
+
         audioSrc.Play();
+
         if (inputVector.x < 0) {
             FlipPlayer(-1f);
         }

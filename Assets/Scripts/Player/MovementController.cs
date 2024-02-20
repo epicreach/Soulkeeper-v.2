@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 2f;
     public float dashDuration = 0.4f;
     private bool isDashing = false;
+    bool moving = false;
 
     private float dashCooldownTimer = Mathf.Infinity;
     [SerializeField] private float dashCooldown;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
 
     private int health;
+    bool inAir = false;
 
     private void Awake() {
         touchingDirections = GetComponent<TouchingDirections>();
@@ -72,7 +74,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() {
 
-        if(damagable.Health == 0){
+        if (!touchingDirections.IsGrounded)
+        {
+            audioSrc.Stop();
+
+        }
+        else if(touchingDirections.IsGrounded && inAir && moving)
+        {
+            inAir = false;
+            audioSrc.Play();
+        }
+        inAir = !touchingDirections.IsGrounded;
+
+        if (damagable.Health == 0){
             SceneManager.LoadSceneAsync(4);
        }
 
@@ -88,13 +102,16 @@ public class PlayerController : MonoBehaviour
     private void OnMovementPerformed(InputAction.CallbackContext context) {
         inputVector = context.ReadValue<Vector2>();
         animator.SetBool("IsRunning", true);
+
         audioSrc.Play();
+
         if (inputVector.x < 0) {
             FlipPlayer(-1f);
         }
         else {
             FlipPlayer(1f);
         }
+        moving = true;
 
     }
 
@@ -102,7 +119,7 @@ public class PlayerController : MonoBehaviour
         inputVector = Vector2.zero;
         animator.SetBool("IsRunning", false);
         audioSrc.Stop();
-        
+        moving = false;
     }
 
     private void OnDashPerformed(InputAction.CallbackContext context) {
@@ -141,18 +158,18 @@ public class PlayerController : MonoBehaviour
     IEnumerator Roll() {
         isRolling = true;
         
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("SkeletonEnemy"), true);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Boss"), true);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Tentacle"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("SkeletonEnemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Tentacle"), true);
         animator.SetTrigger("Rolling");
         float playerDirection = transform.localScale.x;
         rb.velocity = new Vector2(playerDirection * rollSpeed, 0);
         yield return new WaitForSeconds(rollDuration);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("SkeletonEnemy"), false);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Boss"), false);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Tentacle"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("SkeletonEnemy"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Tentacle"), false);
 
         isRolling = false;
     }

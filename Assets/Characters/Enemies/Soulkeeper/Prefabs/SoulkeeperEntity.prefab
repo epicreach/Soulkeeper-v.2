@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8326900355146850865}
   - component: {fileID: 7316266587047097053}
   - component: {fileID: -4076598962793665537}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SoulkeeperEntity
   m_TagString: Boss
   m_Icon: {fileID: 0}

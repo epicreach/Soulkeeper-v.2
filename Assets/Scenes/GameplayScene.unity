@@ -557,11 +557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2476427018066811260, guid: a78e278a157672943be5d3d2624ad982, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 91.09
+      value: -6.33
       objectReference: {fileID: 0}
     - target: {fileID: 2476427018066811260, guid: a78e278a157672943be5d3d2624ad982, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.08
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2476427018066811260, guid: a78e278a157672943be5d3d2624ad982, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31392,7 +31392,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.09, y: 18.08, z: -11.091038}
+  m_LocalPosition: {x: -6.33, y: -0.35, z: -11.091038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96956,13 +96956,17 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3967541658145040221, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
+      propertyPath: BypassListenerEffects
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4951817941814064238, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 91.09
+      value: -6.33
       objectReference: {fileID: 0}
     - target: {fileID: 4951817941814064238, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.08
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4951817941814064238, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
       propertyPath: m_LocalPosition.z

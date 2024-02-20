@@ -111,7 +111,7 @@ public class SkeletonMovement : MonoBehaviour
     private bool canSeePlayer()
     {
         
-        Debug.DrawRay(rb.position, playerBody.position - rb.position, Color.white, sightDistance);
+       
         RaycastHit2D ray = Physics2D.Raycast(rb.position,playerBody.position - rb.position,sightDistance,~LayerMask.GetMask("SkeletonEnemy"));
         
         if(ray.collider != null && ray.collider.gameObject.tag != null)

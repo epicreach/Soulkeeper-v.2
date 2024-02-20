@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 2f;
     public float dashDuration = 0.4f;
     private bool isDashing = false;
+    bool moving = false;
 
     private float dashCooldownTimer = Mathf.Infinity;
     [SerializeField] private float dashCooldown;
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
             audioSrc.Stop();
 
         }
-        else if(touchingDirections.IsGrounded && inAir)
+        else if(touchingDirections.IsGrounded && inAir && moving)
         {
             inAir = false;
             audioSrc.Play();
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
         else {
             FlipPlayer(1f);
         }
+        moving = true;
 
     }
 
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour
         inputVector = Vector2.zero;
         animator.SetBool("IsRunning", false);
         audioSrc.Stop();
-        
+        moving = false;
     }
 
     private void OnDashPerformed(InputAction.CallbackContext context) {

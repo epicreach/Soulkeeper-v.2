@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SoulkeeperEntityController : MonoBehaviour
 {
-
+    AudioSource audioSrc;
+    [SerializeField]
+    AudioClip teleportClip;
     Damagable damagable;
 
     BoxCollider2D collider;
@@ -19,6 +21,7 @@ public class SoulkeeperEntityController : MonoBehaviour
         health = damagable.Health;
         animator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -27,6 +30,7 @@ public class SoulkeeperEntityController : MonoBehaviour
             animator.Play("SoulkeeperSink");
             health = damagable.Health;
             collider.enabled = false;
+            audioSrc.PlayOneShot(teleportClip);
             Invoke("Teleport", 1.2f);
         }
 

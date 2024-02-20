@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TentacleSpawner : MonoBehaviour
 {
-
+    
     int maxTentacles = 7;
     int tentacleCount = 0;
 

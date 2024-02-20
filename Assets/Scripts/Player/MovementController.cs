@@ -140,12 +140,19 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Roll() {
         isRolling = true;
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("SkeletonEnemy"), true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Boss"), true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Tentacle"), true);
         animator.SetTrigger("Rolling");
         float playerDirection = transform.localScale.x;
         rb.velocity = new Vector2(playerDirection * rollSpeed, 0);
         yield return new WaitForSeconds(rollDuration);
-        GetComponent<CapsuleCollider2D>().enabled = true;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("SkeletonEnemy"), false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Boss"), false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Tentacle"), false);
 
         isRolling = false;
     }

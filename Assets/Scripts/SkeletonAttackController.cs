@@ -10,7 +10,7 @@ public class SkeletonAttackController : MonoBehaviour
     [SerializeField]
     private float attackDistance = 1f;
     private Rigidbody2D playerBody;
-    private float timeUntilDamage = 0.5f;
+    private float timeUntilDamage = 0.8f;
     Animator anim;
     private float timeSinceLastAttack = 0f;
     [SerializeField]
@@ -67,7 +67,7 @@ public class SkeletonAttackController : MonoBehaviour
                     Damagable other = ray.collider.gameObject.GetComponent<Damagable>();
                     if (other != null)
                     {
-                        other.Hit(10);
+                        other.Hit(10,gameObject);
                     }
                    
                    

@@ -8,6 +8,7 @@ public class Damagable : MonoBehaviour
     Animator animator;
     [SerializeField]
     private int _maxHealth = 100;
+    GameObject objectThatAttacked;
     public int MaxHealth
     {
         get
@@ -89,4 +90,19 @@ public class Damagable : MonoBehaviour
         }
 
     }
+    
+    public void Hit(int damage,GameObject objectAttacked)
+    {
+        if (IsAlive && !isInvincible)
+        {
+            Health -= damage;
+            isInvincible = true;
+        }
+        objectThatAttacked = objectAttacked;
+    }
+    public GameObject GetObjectThatAttacked()
+    {
+        return objectThatAttacked;
+    }
+
 }

@@ -23969,6 +23969,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8489956657895354227, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
+      propertyPath: hitBackForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8551288292280716452, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
       propertyPath: m_Name
       value: Player

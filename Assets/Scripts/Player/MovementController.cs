@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.4f;
     private bool isDashing = false;
     bool moving = false;
+   
 
     private float dashCooldownTimer = Mathf.Infinity;
     [SerializeField] private float dashCooldown;
@@ -43,7 +44,13 @@ public class PlayerController : MonoBehaviour
 
     private int health;
     bool inAir = false;
-
+    bool hitBack = false;
+    float hitBackTime = 0.1f;
+    float timeInAir = 0f;
+    [SerializeField]
+    private float hitBackForce = 5f;
+    private float playerMass;
+    
     private void Awake() {
         touchingDirections = GetComponent<TouchingDirections>();
         input = new DefaultPlayerInputs();
@@ -52,6 +59,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         damagable = GetComponent<Damagable>();
         health = damagable.MaxHealth;
+        playerMass = rb.mass;
     }
 
     private void OnEnable() {
@@ -95,7 +103,48 @@ public class PlayerController : MonoBehaviour
             return;
         }
         dashCooldownTimer += Time.deltaTime;
-        rb.velocity = new Vector2(inputVector.x * walkSpeed, rb.velocity.y);
+
+        
+
+        if (health > damagable.Health || hitBack)
+        {
+            Debug.Log("Hitback");
+            HitBack();
+        }
+        else if(hitBack == false)
+        {
+
+            rb.velocity = new Vector2(inputVector.x * walkSpeed, rb.velocity.y);
+        }
+        health = damagable.Health;
+
+        
+    }
+    
+    private void HitBack()
+    {
+        hitBack = true;
+        GameObject attacker = damagable.GetObjectThatAttacked();
+        
+        Debug.Log(attacker);
+        
+        if (hitBackTime > timeInAir && attacker != null)
+        {
+            timeInAir += Time.deltaTime;
+            rb.velocity = hitBackForce * (new Vector2(rb.position.x - attacker.transform.position.x, Mathf.Abs(rb.position.x - attacker.transform.position.x))) .normalized;
+            rb.mass = 0;
+           
+        }
+        else
+        {
+            rb.mass = playerMass;
+            timeInAir = 0;
+            hitBack = false;
+        }
+
+        
+        
+            
         
     }
 

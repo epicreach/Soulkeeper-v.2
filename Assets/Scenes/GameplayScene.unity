@@ -97382,6 +97382,10 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8489956657895354227, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
+      propertyPath: hitBackForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489956657895354227, guid: 189a8adc65a61024aa1877de14a53603, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 2119826685}

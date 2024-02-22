@@ -42,7 +42,7 @@ public class GooBallController : MonoBehaviour
             Damagable temp = other.GetComponent<Damagable>();
 
             if (temp != null) {
-                temp.Hit(damage);
+                temp.Hit(damage,gameObject);
             }
 
             Destroy(gameObject);

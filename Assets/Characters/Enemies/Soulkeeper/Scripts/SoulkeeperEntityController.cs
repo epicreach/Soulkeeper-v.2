@@ -36,7 +36,7 @@ public class SoulkeeperEntityController : MonoBehaviour
 
         if (damagable.Health <= 0) {
             Destroy(gameObject);
-            SceneManager.LoadSceneAsync(3);
+            SceneManager.LoadSceneAsync(4);
         }
     }
 
@@ -47,16 +47,6 @@ public class SoulkeeperEntityController : MonoBehaviour
         newX = Random.Range(5,35);
         transform.position = new Vector2(newX, transform.position.y);
         collider.enabled = true;
-    }
-
-    void OnTriggerStay2D(Collider2D other) {
-
-       /* Damagable damagable = other.GetComponent<Damagable>();
-
-        if (damagable != null) {
-            damagable.Hit(20);
-        }*/
-
     }
 
 }

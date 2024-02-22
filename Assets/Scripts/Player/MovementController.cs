@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         inAir = !touchingDirections.IsGrounded;
 
         if (damagable.Health == 0){
-            SceneManager.LoadSceneAsync(4);
+            SceneManager.LoadSceneAsync(5);
        }
 
         if (isDashing || isRolling) {

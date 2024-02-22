@@ -14,7 +14,7 @@ public class WallJumpingController : MonoBehaviour
     
     // Wall jumping variables
     private bool isWallJumping;
-    private float wallJumpingDuration = 0.8f;
+    private float wallJumpingDuration = 0.5f;
     private Vector2 wallJumpForce = new Vector2(6.0f, 3.0f);
 
 

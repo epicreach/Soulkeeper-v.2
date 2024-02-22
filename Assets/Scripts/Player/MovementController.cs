@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.4f;
     private bool isDashing = false;
     bool moving = false;
+   
 
     private float dashCooldownTimer = Mathf.Infinity;
     [SerializeField] private float dashCooldown;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     float timeInAir = 0f;
     [SerializeField]
     private float hitBackForce = 5f;
+    private float playerMass;
     
     private void Awake() {
         touchingDirections = GetComponent<TouchingDirections>();
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         damagable = GetComponent<Damagable>();
         health = damagable.MaxHealth;
+        playerMass = rb.mass;
     }
 
     private void OnEnable() {
@@ -124,14 +127,17 @@ public class PlayerController : MonoBehaviour
         GameObject attacker = damagable.GetObjectThatAttacked();
         
         Debug.Log(attacker);
-        Rigidbody2D rb2d = gameObject.GetComponent<Rigidbody2D>();
+        
         if (hitBackTime > timeInAir && attacker != null)
         {
             timeInAir += Time.deltaTime;
-            rb2d.velocity = hitBackForce * (rb2d.position - new Vector2(attacker.transform.position.x, attacker.transform.position.y)).normalized ;
+            rb.velocity = hitBackForce * (new Vector2(rb.position.x - attacker.transform.position.x, Mathf.Abs(rb.position.x - attacker.transform.position.x))) .normalized;
+            rb.mass = 0;
+           
         }
         else
         {
+            rb.mass = playerMass;
             timeInAir = 0;
             hitBack = false;
         }

@@ -14,12 +14,17 @@ public class SwordController : MonoBehaviour
     [SerializeField]
     float swordCooldown = 0.7f;
     [SerializeField] private float attackCooldown;
+    private float attackCooldownTimer = Mathf.Infinity;
 
     void Awake() {
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
         input = new DefaultPlayerInputs();
         animator = GetComponent<Animator>();
+    }
+
+    void Update() {
+        attackCooldownTimer += Time.deltaTime;
     }
 
     void OnEnable() {
@@ -51,11 +56,13 @@ public class SwordController : MonoBehaviour
 
 
     void OnAttackPerformed(InputAction.CallbackContext context) {
-
-        boxCollider.enabled = true;
-        animator.Play("SwordAttack1");
-        Invoke("DisableCollisionBox", swordCooldown);
-        audioSrc.PlayOneShot(clip);
+        if(attackCooldownTimer > attackCooldown) {
+            boxCollider.enabled = true;
+            animator.Play("SwordAttack1");
+            Invoke("DisableCollisionBox", swordCooldown);
+            audioSrc.PlayOneShot(clip);
+            attackCooldownTimer = 0;
+        }       
     }
 
     

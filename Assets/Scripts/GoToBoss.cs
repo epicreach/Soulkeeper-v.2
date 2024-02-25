@@ -8,7 +8,7 @@ public class GoToBoss : MonoBehaviour
 {
     
     public void goToBoss(){
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(3);
     }
 
 }

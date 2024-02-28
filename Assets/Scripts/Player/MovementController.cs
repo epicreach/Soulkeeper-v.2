@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hitback");
             HitBack();
+            animator.SetTrigger("hurt");
         }
         else if(hitBack == false)
         {

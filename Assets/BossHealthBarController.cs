@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
+    #if UNITY_EDITOR
+     
+    using UnityEditor;
+     
+    #endif
+
 
 [RequireComponent(typeof(Damagable))]
 public class BossHealthBarController : MonoBehaviour

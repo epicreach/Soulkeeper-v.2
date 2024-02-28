@@ -58,7 +58,10 @@ public class Damagable : MonoBehaviour
             Debug.Log("IsAlive: " + value);
         }
     }
-
+    public void SetInvincibility(bool bol)
+    {
+        isInvincible = bol;
+    }
     private void Awake()
     {
         animator = GetComponent<Animator>();

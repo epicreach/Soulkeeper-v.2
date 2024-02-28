@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cainos.LucidEditor;
-using UnityEditor.SceneManagement;
-using UnityEditor;
+    #if UNITY_EDITOR
+     
+    using UnityEditor;
+    using UnityEditor.SceneManagement;
+
+    #endif
+
 
 namespace Cainos.PixelArtPlatformer_Dungeon
 {

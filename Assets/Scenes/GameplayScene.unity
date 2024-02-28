@@ -36106,6 +36106,7 @@ GameObject:
   - component: {fileID: 990432503}
   - component: {fileID: 990432506}
   - component: {fileID: 990432507}
+  - component: {fileID: 990432508}
   m_Layer: 3
   m_Name: craig
   m_TagString: Enemy
@@ -36217,12 +36218,13 @@ MonoBehaviour:
   rangeLeft: 1
   rangeRight: 1
   colliderDistance: 0
-  damage: 1
+  damage: 20
   boxColliderLeft: {fileID: 990432505}
   boxColliderRight: {fileID: 990432504}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  damagable: {fileID: 990432508}
 --- !u!61 &990432504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36325,7 +36327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0bcaaf1851014da607ff94f25c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   attackDistance: 1.1
   boxCollider: {fileID: 990432504}
   colliderDistance: 0
@@ -36346,7 +36348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0bcaaf1851014da607ff94f25c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   attackDistance: 1.1
   boxCollider: {fileID: 990432505}
   colliderDistance: 0
@@ -36355,6 +36357,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   timeBetweenAttacks: 1
+--- !u!114 &990432508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990432499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aef3673e93d7ce42afdba078532fd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _health: 100
+  _isAlive: 1
+  isInvincible: 0
+  invincibilityTime: 0
 --- !u!1001 &994849831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92057,6 +92076,7 @@ GameObject:
   - component: {fileID: 1306355371}
   - component: {fileID: 1306355378}
   - component: {fileID: 1306355377}
+  - component: {fileID: 1306355379}
   m_Layer: 3
   m_Name: craig numero dos
   m_TagString: Enemy
@@ -92080,12 +92100,13 @@ MonoBehaviour:
   rangeLeft: 1
   rangeRight: 1
   colliderDistance: 0
-  damage: 1
+  damage: 20
   boxColliderLeft: {fileID: 1306355372}
   boxColliderRight: {fileID: 1306355373}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  damagable: {fileID: 1306355379}
 --- !u!61 &1306355372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92276,7 +92297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0bcaaf1851014da607ff94f25c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   attackDistance: 1.1
   boxCollider: {fileID: 1306355372}
   colliderDistance: 0
@@ -92297,7 +92318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0bcaaf1851014da607ff94f25c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   attackDistance: 1.1
   boxCollider: {fileID: 1306355373}
   colliderDistance: 0
@@ -92306,6 +92327,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   timeBetweenAttacks: 1
+--- !u!114 &1306355379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306355370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aef3673e93d7ce42afdba078532fd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _health: 100
+  _isAlive: 1
+  isInvincible: 0
+  invincibilityTime: 0
 --- !u!1001 &1311231285
 PrefabInstance:
   m_ObjectHideFlags: 0

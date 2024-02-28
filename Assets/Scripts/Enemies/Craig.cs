@@ -13,6 +13,10 @@ public class Craig : MonoBehaviour
     [SerializeField] private BoxCollider2D boxColliderRight;
     [SerializeField] private LayerMask playerLayer;
 
+    [SerializeField] private Damagable damagable;
+
+    private int health;
+
     private float attackCooldownTimer = Mathf.Infinity;
 
     private Animator animator;
@@ -22,11 +26,21 @@ public class Craig : MonoBehaviour
     private void Awake(){
         animator = GetComponent<Animator>();
         attackController = GetComponent<EnemyAttackController>();
+        health = damagable.MaxHealth;
     }
 
     private void Update()
     {
        attackCooldownTimer += Time.deltaTime;
+
+       if(damagable.Health == 0){
+              Destroy(this.gameObject);
+       }
+
+       if(damagable.Health < health){
+              health = damagable.Health;
+              animator.SetTrigger("hurt");
+       }
 
         //attack if sees player to the left
         if(seesPlayerLeft())
